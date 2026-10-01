@@ -128,13 +128,13 @@ try {
         name: entry.name, decoded: entry.decodedBodySize, encoded: entry.encodedBodySize, transferred: entry.transferSize })));
       assert.ok(requests.every(request => new URL(request).origin === new URL(url).origin));
       const decoded = resources.reduce((sum, resource) => sum + resource.decoded, 0);
-      const js = resources.filter(resource => resource.name.endsWith('.mjs')).reduce((sum, resource) => sum + resource.decoded, 0);
-      const fonts = resources.filter(resource => resource.name.endsWith('.woff2'));
+      const js = resources.filter(resource => new URL(resource.name).pathname.endsWith('.mjs')).reduce((sum, resource) => sum + resource.decoded, 0);
+      const fonts = resources.filter(resource => new URL(resource.name).pathname.endsWith('.woff2'));
       assert.ok(decoded > 0 && decoded <= evidence.budgets.decodedRoute, engine + ' route budget ' + decoded);
       assert.ok(js > 0 && js <= evidence.budgets.js, engine + ' JS budget ' + js);
       assert.equal(fonts.length, 2, engine + ' both local Latin/Turkish font subsets must be measured');
       assert.ok(fonts.every(font => font.decoded > 0));
-      assert.ok(resources.some(resource => resource.name.endsWith('theme.mjs')));
+      assert.ok(resources.some(resource => new URL(resource.name).pathname.endsWith('/theme.mjs')));
       assert.ok(await page.evaluate(() => document.fonts.check('600 17px "Josefin Sans"')));
       assert.equal(await page.locator('script:not([src]), [style]').count(), 0);
       const traversalKey = engine === 'webkit' ? 'Alt+Tab' : 'Tab';
@@ -357,7 +357,7 @@ try {
       }
 
       const failedModuleContext = await browser.newContext({ viewport: { width: 320, height: 568 }, colorScheme: 'light' });
-      await failedModuleContext.route('**/app.mjs', route => route.abort());
+      await failedModuleContext.route(requestURL => requestURL.pathname.endsWith('/app.mjs'), route => route.abort());
       const failedModule = await failedModuleContext.newPage();
       await failedModule.goto(url);
       assert.equal(await failedModule.locator('.tile').count(), 7);

@@ -37,6 +37,8 @@ ZIP'in genel yerleşimi değiştirilmedi. Somut düzeltmeler: soluk metin/placeh
 
 ## Kabul ve yayın
 
+Build, HTML/CSS/font/modül adreslerine aynı içerik sürümünü ekler. Her kaynak değişiminde bütün adresler birlikte yenilenir; yeni HTML eski önbellekteki stil veya modülle karışmaz. Bu, önbellek yenileme anahtarıdır; eski sürüm dosyalarını sunucuda saklayan bir arşiv değildir. Açık sayfa kendiliğinden yenilenmez.
+
 CI main değişikliklerinde check/unit/build ve Chromium/Firefox/WebKit QA sonrasında yalnız `site/` artefaktını GitHub Pages'e yayınlar. PR sadece kontrolleri çalıştırır. Workflow commit üretmez; author/committer kişisel Git politikasına bağlıdır. Gerçek cihaz/ekran okuyucu sonuçları emülasyondan ayrı tutulur.
 
 - Kritik yol: 320→360→375→390; yatay/kısa yükseklik, tablet/desktop; 600px grid eşiğinde 599/600/601; fare/dokunma/klavye; arama/grup/temizleme/boş sonuç/tema ve bozuk kayıt; yön değişiminde odak ve sorgu devamı.
