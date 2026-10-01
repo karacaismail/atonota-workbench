@@ -1,6 +1,6 @@
 # Atonota Workbench
 
-İkonlu, aramalı, mobil öncelikli statik uygulama başlatıcısı. Uygulamalar yeni sekmede açılır. Referans: kullanıcının beyaz Frappe desktop ve ikon grid ekran görüntüleri. Yerel çizilen SVG ikonlar temsilidir; resmi marka logoları değildir.
+İkonlu, aramalı, mobil öncelikli statik uygulama başlatıcısı. Uygulamalar yeni sekmede açılır. Güncel tasarım, kullanıcının 1 Ekim 2026 tarihli workbench.zip dosyasından birebir aktarılmıştır: Josefin Sans, açık/koyu neumorphic yüzeyler, iki uygulama grubu, bileşen hattı ve alttaki arama/filtre alanı. SVG ikonlar dosyadan alınan temsilî şekillerdir; resmî marka logosu değildir.
 
 Gösterim: [GitHub Pages](https://karacaismail.github.io/atonota-workbench/). Üretim hedefi `wb.atonota.net`; bu repo DNS veya Hetzner kurulumu yapmaz. Başlatıcı çalışması bağlı servislerin kurulmuş/erişilebilir olduğunu göstermez.
 
@@ -31,16 +31,18 @@ npx --no-install playwright install chromium firefox webkit
 npm run qa
 ```
 
-`site/` yayın çıktısıdır. `catalog.mjs` uygulama/adres/arama takma adları kaynağıdır; yeni uygulamayı burada ekle, testte beklenen hedefleri güncelle. `styles.css` semantik tokenları içerir. Arama ad/amaç/adresi yerel filtreler; API/AI çağrısı, analytics, dış font veya servis worker yoktur. Bütün bağlantılar JavaScript olmadan da çalışır.
+`site/` yayın çıktısıdır. `catalog.mjs` uygulama/adres/grup/arama takma adları kaynağıdır; yeni uygulamayı burada ekle, testte beklenen hedefleri güncelle. `page-template.html` görsel yapıyı, `render.mjs` güvenli HTML üretimini, `styles.css` semantik tokenları içerir. Arama ad/amaç/grup/adresi yerel filtreler; API/AI çağrısı, analytics, dış font veya servis worker yoktur. Bütün bağlantılar JavaScript olmadan da çalışır.
+
+ZIP'in genel yerleşimi değiştirilmedi. Somut düzeltmeler: soluk metin/placeholder kontrastı, tema kontrolünün kenarda kesilen odağı, bozuk kayıt verisi, düzenlenebilir alanda kısayol ve grup bağlamını koruyan temizleme. Inline tema/ikon stilleri güvenli self dosyalarına taşındı; görünüm korunuyor. İki yerel font dosyası ve üçüncü taraf SIL OFL lisansı `fonts/` altında değişmeden korunur; bu, başlatıcının henüz seçilmemiş proje lisansı değildir.
 
 ## Kabul ve yayın
 
 CI main değişikliklerinde check/unit/build ve Chromium/Firefox/WebKit QA sonrasında yalnız `site/` artefaktını GitHub Pages'e yayınlar. PR sadece kontrolleri çalıştırır. Workflow commit üretmez; author/committer kişisel Git politikasına bağlıdır. Gerçek cihaz/ekran okuyucu sonuçları emülasyondan ayrı tutulur.
 
-- Kritik yol: 320→360→375→390; yatay/kısa yükseklik, tablet/desktop; fare/dokunma/klavye; arama/temizleme/boş sonuç; yön değişiminde odak ve sorgu devamı.
-- Kontroller44px, coarse48px; marka uyumlu tek kontrol odağı. Uygulama adları hover olmadan görünür.
+- Kritik yol: 320→360→375→390; yatay/kısa yükseklik, tablet/desktop; 600px grid eşiğinde 599/600/601; fare/dokunma/klavye; arama/grup/temizleme/boş sonuç/tema ve bozuk kayıt; yön değişiminde odak ve sorgu devamı.
+- Kontroller44px, coarse48px; marka uyumlu tek kontrol odağı. Uygulama adları hover olmadan görünür. Sticky barlar klavye odağını örtemez; kısa yatay ekranda tüm tile sığmıyorsa uygulama adı görünür tutulur.
 - İlk rota cold-context decoded toplam<=100KiB, JS<=15KiB; dış origin isteği0 (uygulama açma hariç). Ağ girişimleri, decoded/transfer ölçümleri `qa-results/results.json` içinde kaydedilir.
-- Screenshotlar aynı sabit ortamdaki aday görsel kanıtlardır. Otomatik tarayıcı kontrolü gerçek iOS/Android/macOS Safari veya ekran okuyucu sertifikası değildir.
+- Screenshotlar aynı sabit ortamdaki aday görsel kanıtlardır. WebKit'te Playwright1.63.0'ın inline screenshot stili için sürüm korumalı, geçici test-only private API uyarlaması kullanılır; uygulama CSP'si ve filtresiz güvenlik hata kontrolü değişmez. Sürüm değişirse uyarlama yeniden doğrulanmadan test durur. Otomatik tarayıcı kontrolü gerçek iOS/Android/macOS Safari veya ekran okuyucu sertifikası değildir.
 - Geri alma: son başarılı sürümün kaynak commitini doğrula; `git revert` ile hatalı değişikliği geri al, aynı kontrol/yayın hattını yeniden çalıştır. Guard/hook atlanmaz; CI başarısızsa deploy edilmez.
 
 İsmail Karaca geliştirme/kabulü; Hüseyin Cengiz üretim server/deploy/güvenliği; Asistan Hüseyin Cengiz'in verdiği GoDaddy/DNS kaydını uygular. Pages yayını özel domain veya hizmet erişim kurallarını değiştirmez.

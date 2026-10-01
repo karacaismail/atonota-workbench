@@ -2,6 +2,8 @@
 
 İsmail Karaca, mevcut statik Workbench başlatıcısında şu yolculuğu önce 320 CSS px'de tamamla: **Workbench'i aç → uygulamayı ikon/ad veya yerel aramayla bul → tek dokunuşla yeni sekmede aç → Workbench'e dön ve bağlamını koru.**
 
+Güncel görsel kaynak kullanıcının `workbench.zip` dosyasıdır. Josefin Sans, açık/koyu neumorphic yüzey, üst marka/tema, iki numaralı grup ve alttaki grup/arama alanını birebir koru; yalnız kanıtlanmış UX hatalarını düzelt.
+
 ## Kapsam ve sorumluluk
 
 - İsmail Karaca geliştirme, ürün kararı ve kabul sahibidir. Codex ve Claude Code aynı görevi yürütmek için araçlardır; ayrı ürün sahipleri değildir.
@@ -20,10 +22,10 @@
 - 320 px'de sayfa yatay taşmasın; iki yanda en az 12 CSS px gutter kalsın. Uygulamalar iki sütunda, büyük temsilî SVG ikon ve altında sürekli görünür adla sunulsun. SVG'leri resmî marka logosu olarak tanımlama; kart/kenarlık kalabalığı oluşturma.
 - Gerçek etkileşim alanı fine girişte en az 44×44, coarse girişte 48×48 CSS px olsun. Mevcut ortak token 48 px'dir; küçültme. Hover, uygulamayı bulmanın veya açmanın tek yolu olmasın.
 - Yedi hedefin tamamı JS kapalıyken gerçek anchor olarak açılsın. `target="_blank"` ve `rel="noopener noreferrer"` kullan; tek dokunuş tek sekme açsın, opener bulunmasın. Dönüşte sorgu, filtrelenmiş liste, kaydırma ve uygun odak bağlamı korunsun.
-- Arama ad/açıklama/takma ad/adresi yerelde filtrelesin; AI çağrısı yapmasın. Sıfır sonuç ve temizleme açık olsun; temizleme tüm uygulamaları getirsin ve sorgu alanına odak dönsün. `/` kısayolu input/textarea/contenteditable içine yazılan metni yakalamasın. Escape, Tab, Shift+Tab ve Enter beklendiği gibi çalışsın.
+- Arama ad/açıklama/grup/takma ad/adresi yerelde filtrelesin; AI çağrısı yapmasın. Sıfır sonuç ve temizleme açık olsun; normal temizleme seçili grubu korusun, boş durumdaki reset tüm grupları açsın ve sorgu alanına odak dönsün. `/` kısayolu input/textarea/contenteditable veya IME girdisini yakalamasın. Enter ilk görünür sonuca geçsin. Native klavye gezinmesini hedef tarayıcının tam-kontrol gezinme ayarıyla doğrula.
 - Yön değişiminde sorgu ve odak kaybolmasın; yazılım klavyesi açıkken ana eylemler erişilebilir kalsın. Genişlikten giriş türü veya cihaz kimliği türetme.
 - Odaklanan kontrolde zemine karşı en az 3:1 kontrastlı tek `:focus-visible` göstergesi bulunsun; kapsayıcı çerçevesi veya üst üste ring/shadow üretme. Zoom ve reduced-motion akışı korunmalı.
-- Ek asset, CDN, dış font, analytics veya API isteği ekleme. Soğuk önbellekli üretim ilk rotasında decoded toplam ≤100 KiB, bunun içindeki JS ≤15 KiB olsun. Cache boş, service worker kapalı ölçümde hazır olma ve arama/temizleme penceresini kaydet; transfer baytlarını decoded boyuttan ayrı raporla. Kullanıcının hedef açması dışında dış origin isteği sıfır olsun.
+- ZIP'in iki yerel font alt kümesini ve SIL OFL telif/lisansını koru; fontlar hazır olduktan sonra boyutu ölç. CDN, dış font, analytics veya API isteği ekleme. Soğuk önbellekli üretim ilk rotasında decoded toplam ≤100 KiB, bunun içindeki JS ≤15 KiB olsun. Cache boş, service worker kapalı ölçümde hazır olma ve arama/temizleme penceresini kaydet; transfer baytlarını decoded boyuttan ayrı raporla. Kullanıcının hedef açması dışında dış origin isteği sıfır olsun.
 
 ## Doğrulama ve teslim
 

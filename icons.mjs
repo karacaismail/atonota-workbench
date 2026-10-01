@@ -1,30 +1,14 @@
-/** Illustrative launcher artwork, not official third-party brand marks. */
-const paths = Object.freeze({
-  brand:
-    '<path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="m4 7.5 8 4.5 8-4.5M12 12v9m-8-9 8 4.5 8-4.5"/>',
-  search: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/>',
-  close: '<path d="m6 6 12 12M18 6 6 18"/>',
-  external: '<path d="M14 4h6v6M20 4 10 14M10 4H4v16h16v-6"/>',
-  pen:
-    '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="m14 18 4-4 3 3-4 4h-3v-3Z"/>',
-  penpot:
-    '<path d="m12 3 7 7-4 9H9l-4-9 7-7Z"/><path d="M12 3v7m-7 0 7 4 7-4M9 19h6"/><circle cx="12" cy="11" r="2"/>',
-  "open-design":
-    '<path d="M8 4H4v4m12-4h4v4m0 8v4h-4M8 20H4v-4"/><path d="m12 5 7 7-7 7-7-7 7-7Z"/><path d="m8.5 12 3.5 3.5 3.5-3.5M12 9v6.5"/>',
-  affinity:
-    '<path d="m3 20 8-16h6l4 8-4 8H3Z"/><path d="m7 12 7 8m-3-16 8 16M7 12h14"/>',
-  blender:
-    '<path d="M8 8 3 5m5 3H2m8-2 3-3 5 4"/><ellipse cx="13.5" cy="13" rx="8.5" ry="6.5"/><ellipse cx="13.5" cy="13" rx="3.5" ry="3"/>',
-  "storybook-beta":
-    '<path d="M5 3h13v18l-6-2-7 2V3Z"/><path d="M9 6h5m-4 4h4M10 10v4l-2 3h8l-2-3v-4M10 14h4"/>',
-  "storybook-rc":
-    '<path d="M5 3h13v18l-6-2-7 2V3Z"/><path d="M9 6h5m-5 7 2 2 4-5"/>',
-});
-
+// Unmodified icon paths from the user-supplied Workbench design.
+const glyphs = {
+  "penpot": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3l6 7-6 11-6-11z\"/><circle cx=\"12\" cy=\"11\" r=\"1.6\"/><path d=\"M12 12.6V21\"/></svg>",
+  "open-design": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3v3M12 18v3M3 12h3M18 12h3\"/><path d=\"M12 8l1.4 2.6L16 12l-2.6 1.4L12 16l-1.4-2.6L8 12l2.6-1.4z\"/></svg>",
+  "affinity": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 18C7 8 17 8 20 18\"/><rect x=\"2.5\" y=\"16.5\" width=\"3\" height=\"3\"/><rect x=\"18.5\" y=\"16.5\" width=\"3\" height=\"3\"/><path d=\"M4 9h16\"/><circle cx=\"12\" cy=\"9\" r=\"1.6\"/></svg>",
+  "blender": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3l8 4.5v9L12 21l-8-4.5v-9z\"/><path d=\"M12 12l8-4.5M12 12v9M12 12L4 7.5\"/></svg>",
+  "storybook-beta": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 3h11a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6z\"/><path d=\"M9 3v18\"/><path d=\"M12 8h4M13 8v2.6l-1.6 3.4h4.2L14 10.6V8\"/></svg>",
+  "storybook-rc": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 3h11a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6z\"/><path d=\"M9 3v18\"/><path d=\"M11.5 11.5l2 2 3-3.5\"/></svg>",
+  "pen": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><rect x=\"4\" y=\"4\" width=\"6.5\" height=\"6.5\" rx=\"1.5\"/><rect x=\"13.5\" y=\"4\" width=\"6.5\" height=\"6.5\" rx=\"1.5\"/><rect x=\"4\" y=\"13.5\" width=\"6.5\" height=\"6.5\" rx=\"1.5\"/><path d=\"M14 20l.6-2.6 4.6-4.6a1.4 1.4 0 0 1 2 2l-4.6 4.6z\"/></svg>"
+};
 export function icon(name) {
-  if (!Object.hasOwn(paths, name)) {
-    throw new RangeError(`Unknown icon: ${String(name)}`);
-  }
-
-  return `<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">${paths[name]}</svg>`;
+  if (!Object.hasOwn(glyphs, name)) throw new Error('Unknown icon: ' + name);
+  return glyphs[name];
 }
