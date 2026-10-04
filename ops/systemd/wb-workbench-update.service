@@ -1,0 +1,10 @@
+[Unit]
+Description=wb.atonota.net Workbench: CI'dan geçen son sürümü yayınla
+Wants=network-online.target
+After=network-online.target docker.service
+
+[Service]
+Type=oneshot
+TimeoutStartSec=10min
+Environment=WB_BASE=__BASE__
+ExecStart=/bin/bash __OPS__/update.sh

@@ -1,0 +1,9 @@
+[Unit]
+Description=Workbench yeni sürüm kontrolü (2 dakikada bir)
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=2min
+
+[Install]
+WantedBy=timers.target

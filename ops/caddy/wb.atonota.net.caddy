@@ -1,0 +1,21 @@
+# WB-SHARED-SITE — wb.atonota.net ORTAK site dosyası. Hiçbir projeye ait değildir.
+# Her proje kendi yolunu /etc/caddy/wb.atonota.net.d/<proje>.caddy dosyasıyla ekler
+# (her proje kendi yoluyla). Bu dosya tüm projelerde aynıdır;
+# setup.sh'lar sadece yoksa (veya eski formattaysa) yazar.
+wb.atonota.net {
+	bind {$PUBLIC_IP}
+	import tls_dns
+	import common wb.atonota.net
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options nosniff
+		X-Robots-Tag "noindex, nofollow"
+	}
+
+	import /etc/caddy/wb.atonota.net.d/*.caddy
+
+	handle {
+		respond "not found" 404
+	}
+}

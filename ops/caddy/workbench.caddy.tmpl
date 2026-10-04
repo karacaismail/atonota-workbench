@@ -1,0 +1,10 @@
+# wb-workbench — https://wb.atonota.net/ (kök). Ortak wb.atonota.net site bloğunun içine import edilir.
+# Statik site, public. Diğer yollar (/sbrc, /pp ...) daha uzun path matcher olduğu için önce eşleşir.
+handle /* {
+	root * __DIR__/current
+	@html path / /index.html *.html
+	header @html Cache-Control "no-cache"
+	@asset not path / /index.html *.html
+	header @asset Cache-Control "public, max-age=604800"
+	file_server
+}
