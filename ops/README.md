@@ -36,4 +36,5 @@ bash /opt/wb-workbench/repo/ops/setup.sh
 | Başarısız sürümü yeniden dene | `rm /opt/wb-workbench/state/failed` → hemen güncelle |
 
 ## Notlar
-- Workbench kataloğundaki `/b3d`, `/od`, `/ad` hedefleri bu sunucuda henüz yayında değil (Blender `b3d.atonota.net`'tedir).
+- `/b3d` → `https://b3d.atonota.net/` adresine yönlendirilir (Blender ayrı alt alan adında, sadece Tailscale/VPN).
+- `/od` ve `/ad` hedefleri henüz kurulmadı (404).

@@ -1,5 +1,9 @@
 # wb-workbench — https://wb.atonota.net/ (kök). Ortak wb.atonota.net site bloğunun içine import edilir.
 # Statik site, public. Diğer yollar (/sbrc, /pp ...) daha uzun path matcher olduğu için önce eşleşir.
+# Katalogdaki /b3d hedefi: Blender ayrı alt alan adında (sadece Tailscale/VPN) çalışır → oraya yönlendir.
+redir /b3d https://b3d.atonota.net/ 302
+redir /b3d/* https://b3d.atonota.net/ 302
+
 handle /* {
 	root * __DIR__/current
 	@html path / /index.html *.html
